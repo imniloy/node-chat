@@ -1,3 +1,5 @@
+const uploader = require("../../utils/singleFileUploader");
+
 function avatarUpload(req, res, next) {
   const upload = uploader(
     "avatars",

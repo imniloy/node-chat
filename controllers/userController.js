@@ -1,8 +1,15 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/people");
 
-function userController(req, res, next) {
-  res.render("users");
+async function userController(req, res, next) {
+  try {
+    const users = await User.find();
+    res.render("users", {
+      users,
+    });
+  } catch (e) {
+    next(e);
+  }
 }
 
 async function addUser(req, res, next) {
@@ -24,16 +31,13 @@ async function addUser(req, res, next) {
 
   try {
     const result = await newUser.save();
-    result.status(200).json({
+    res.status(200).json({
       message: "User created successfully",
     });
-  } catch (err) {
-    result.status(500).json({
-      errors: {
-        common: {
-          msg: "Unknown error occurred",
-        },
-      },
+  } catch (errors) {
+    console.log(errors);
+    res.status(500).json({
+      errors,
     });
   }
 }

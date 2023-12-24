@@ -13,7 +13,7 @@ const peopleSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
-    mobileNumber: {
+    mobile: {
       type: String,
       required: true,
     },

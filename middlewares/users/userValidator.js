@@ -50,7 +50,7 @@ const addUserValidator = [
 const addUserValidationHandler = (req, res, next) => {
   const errors = validationResult(req);
   const mappedError = errors.mapped();
-  if (Object.keys(mappedError).length > 0) {
+  if (Object.keys(mappedError).length == 0) {
     next();
   } else {
     if (req.files.length > 0) {
