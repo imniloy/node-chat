@@ -1,5 +1,9 @@
 const express = require("express");
-const { userController, addUser } = require("../controllers/userController");
+const {
+  userController,
+  addUser,
+  removeUser,
+} = require("../controllers/userController");
 const decorateHtmlRes = require("../middlewares/common/common/decorateHtmlRes");
 const avatarUpload = require("../middlewares/users/avatarUpload");
 const {
@@ -17,4 +21,5 @@ router.post(
   addUser
 );
 
+router.delete(`/:id`, removeUser);
 module.exports = router;
